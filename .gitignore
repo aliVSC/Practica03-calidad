@@ -1,0 +1,79 @@
+# ARCHIVOS DE PYTHON
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+# =========================
+# ENTORNOS VIRTUALES
+# =========================
+venv/
+.env/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# =========================
+# ARCHIVOS DE PRUEBA Y LOGS
+# =========================
+.coverage
+htmlcov/
+.cache/
+pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+*.out
+*.tmp
+*.err
+.tox/
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytest_cache/
+reports/
+
+# =========================
+# ARCHIVOS DE VS CODE
+# =========================
+.vscode/
+.history/
+*.code-workspace
+
+# =========================
+# SISTEMAS OPERATIVOS
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# ARCHIVOS DE DATOS TEMPORALES
+# =========================
+*.csv~
+*.bak
+*.swp
+*.swo
+*.tmp
+
+# =========================
+# CONFIGURACIÓN PERSONAL O DE DEPLOY
+# =========================
+.env.local
+.env.production
+config.json
+credentials.json
