@@ -57,6 +57,19 @@ class TestAnalizador(unittest.TestCase):
             obtenido = resumen.get(p, 0.0)
             self.assertAlmostEqual(esperado, obtenido, places=2, msg=f"Desacuerdo en provincia {p}")
 
+
+    def test_porcentaje_tarifa_0_por_provincia(self):
+        pct = self.analizador.porcentaje_ventas_tarifa_0_por_provincia()
+        self.assertIsInstance(pct, dict)
+        # verifica que los porcentajes sean numéricos y no negativos
+        for k, v in pct.items():
+            self.assertIsInstance(v, (int, float))
+            self.assertGreaterEqual(v, 0.0)
+            # opcional: aseguramos que no sea NaN
+            self.assertFalse(v != v)  # True sólo si NaN
+
+
+
     def test_exportaciones_totales_por_mes(self):
         res = self.analizador.exportaciones_totales_por_mes()
         self.assertIsInstance(res, dict)

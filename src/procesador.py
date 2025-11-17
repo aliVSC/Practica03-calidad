@@ -106,6 +106,35 @@ class Analizador:
             acc[mes] += exp
         return dict(acc)
 
+    def porcentaje_ventas_tarifa_0_por_provincia(self) -> Dict[str, float]:
+        """
+        Calcula por provincia el porcentaje (VENTAS_NETAS_TARIFA_0 / TOTAL_VENTAS) * 100.
+        Retorna dict {provincia: porcentaje}. Si TOTAL_VENTAS == 0 -> porcentaje 0.0.
+        """
+        numeradores = defaultdict(float)
+        denominadores = defaultdict(float)
+
+        for fila in self.datos:
+            prov = (fila.get("PROVINCIA") or "").strip()
+            v0 = _parse_float(fila.get("VENTAS_NETAS_TARIFA_0") or fila.get("VENTAS NETAS TARIFA 0") or 0)
+            tv = _parse_float(fila.get("TOTAL_VENTAS") or fila.get("TOTAL VENTAS") or 0)
+
+            numeradores[prov] += v0
+            denominadores[prov] += tv
+
+        resultados = {}
+        for prov in set(list(numeradores.keys()) + list(denominadores.keys())):
+            denom = denominadores.get(prov, 0.0)
+            if denom <= 0.0:
+                resultados[prov] = 0.0
+            else:
+                resultados[prov] = (numeradores.get(prov, 0.0) / denom) * 100.0
+
+        return resultados
+
+
+
+
     def provincia_con_mayor_importaciones(self) -> Tuple[str, float]:
         """
         Identifica la provincia con mayor total de IMPORTACIONES.
